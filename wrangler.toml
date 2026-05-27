@@ -1,0 +1,8 @@
+name = "bruno-leads"
+compatibility_date = "2025-03-01"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bruno-leads-db"
+database_id = "85106d04-0043-4311-8208-07f87fae8a26"
