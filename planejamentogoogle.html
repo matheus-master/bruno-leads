@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MB Celulares — Estrutura de Campanha Google Ads</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0F;
+    --bg-card: #111118;
+    --bg-card2: #16161F;
+    --border: rgba(255,255,255,0.07);
+    --border-accent: rgba(99,179,237,0.3);
+    --text: #E8E8F0;
+    --text-muted: #7A7A8C;
+    --text-dim: #4A4A5C;
+    --accent: #63B3ED;
+    --accent-warm: #F6AD55;
+    --accent-green: #68D391;
+    --accent-red: #FC8181;
+    --accent-purple: #B794F4;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 40px 20px 80px;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+  }
+
+  .label-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(99,179,237,0.08);
+    border: 1px solid rgba(99,179,237,0.2);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .page-title span {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .page-subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 560px;
+  }
+
+  /* ALERT BOX */
+  .alert {
+    background: rgba(252,129,129,0.06);
+    border: 1px solid rgba(252,129,129,0.2);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 48px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .alert-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .alert-text {
+    font-size: 14px;
+    color: #FEB2B2;
+    line-height: 1.6;
+  }
+
+  .alert-text strong {
+    color: var(--accent-red);
+    font-weight: 600;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .section-number {
+    width: 28px;
+    height: 28px;
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: -16px;
+    margin-bottom: 20px;
+    padding-left: 40px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+
+  .card:hover {
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .card-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  /* AD PREVIEW */
+  .ad-preview {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .ad-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #2F855A;
+    background: rgba(72,187,120,0.1);
+    border: 1px solid rgba(72,187,120,0.25);
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  .ad-url {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .ad-headline {
+    font-size: 17px;
+    font-weight: 500;
+    color: #7EC8F5;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .ad-headline .separator {
+    color: var(--text-dim);
+    margin: 0 4px;
+  }
+
+  .ad-desc {
+    font-size: 13px;
+    color: #C0C0D0;
+    line-height: 1.6;
+  }
+
+  .ad-number {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+  }
+
+  /* KEYWORD GROUPS */
+  .kw-group {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .kw-header {
+    padding: 12px 20px;
+    background: var(--bg-card2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .kw-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .kw-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .kw-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+
+  .kw-body {
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .kw-tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid;
+    font-family: 'DM Sans', monospace;
+  }
+
+  .kw-tag.exact {
+    color: var(--accent-green);
+    border-color: rgba(104,211,145,0.25);
+    background: rgba(104,211,145,0.06);
+  }
+
+  .kw-tag.phrase {
+    color: var(--accent);
+    border-color: rgba(99,179,237,0.25);
+    background: rgba(99,179,237,0.06);
+  }
+
+  .kw-tag.broad {
+    color: var(--accent-warm);
+    border-color: rgba(246,173,85,0.25);
+    background: rgba(246,173,85,0.06);
+  }
+
+  .kw-tag.negative {
+    color: var(--accent-red);
+    border-color: rgba(252,129,129,0.25);
+    background: rgba(252,129,129,0.06);
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* TABLE */
+  .table-wrap {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead tr {
+    background: var(--bg-card2);
+  }
+
+  thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+  }
+
+  tbody td {
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  .td-block {
+    color: var(--accent-red);
+    text-decoration: line-through;
+    font-size: 12px;
+  }
+
+  .td-ok {
+    color: var(--accent-green);
+    font-size: 12px;
+  }
+
+  /* EXTENSIONS */
+  .ext-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .ext-grid { grid-template-columns: 1fr; }
+  }
+
+  .ext-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+
+  .ext-type {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-purple);
+    margin-bottom: 10px;
+  }
+
+  .ext-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ext-item:last-child { border-bottom: none; }
+
+  .ext-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    flex-shrink: 0;
+  }
+
+  /* SCHEDULE */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+
+  .schedule-day {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 8px;
+    text-align: center;
+  }
+
+  .schedule-day.active {
+    border-color: rgba(99,179,237,0.3);
+    background: rgba(99,179,237,0.06);
+  }
+
+  .schedule-day.inactive {
+    opacity: 0.35;
+  }
+
+  .day-name {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .day-hours {
+    font-size: 10px;
+    color: var(--accent);
+    line-height: 1.4;
+  }
+
+  /* METRICS */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .metric-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 16px;
+    text-align: center;
+  }
+
+  .metric-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* STRATEGY NOTE */
+  .strategy-note {
+    background: rgba(183,148,244,0.05);
+    border: 1px solid rgba(183,148,244,0.2);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+
+  .strategy-note .note-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-purple);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .strategy-note .note-body {
+    font-size: 14px;
+    color: #C4B5FD;
+    line-height: 1.7;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+
+  .check-item .check-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(104,211,145,0.1);
+    border: 1px solid rgba(104,211,145,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--accent-green);
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; color: black; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="label-tag">📱 Google Ads · MB Celulares</div>
+    <h1 class="page-title">Campanha <span>100% aprovável</span><br>no Google Ads</h1>
+    <p class="page-subtitle">Copy, palavras-chave, extensões e segmentação — com linguagem alinhada à política de suporte técnico terceirizado.</p>
+  </div>
+
+  <!-- ALERT -->
+  <div class="alert">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-text">
+      <strong>Política Google — Suporte Técnico Terceirizado:</strong> Qualquer anúncio ou landing page que mencione conserto, reparo, assistência técnica, troca de peças ou suporte técnico pode ser reprovado ou suspenso. Toda a estrutura abaixo foi construída para contornar isso sem perder relevância.
+    </div>
+  </div>
+
+  <!-- SEÇÃO 1 — DICIONÁRIO DE LINGUAGEM -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">Dicionário de Linguagem</h2>
+    </div>
+    <p class="section-desc">Traduza cada termo bloqueado para a versão aprovável. Use isso em anúncios E na landing page.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>❌ Bloqueado</th>
+            <th>✅ Usar no lugar</th>
+            <th>Contexto de uso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="td-block">Assistência técnica</span></td>
+            <td><span class="td-ok">Centro especializado em smartphones</span></td>
+            <td style="color:var(--text-muted); font-size:12px">Nome da empresa / posicionamento</td>
+          </tr>
+          <tr>
+            <td><span class="td-block">Conserto / reparo</span></td>
+            <td><span class="td-ok">Solução para o seu dispositivo</span></td>
+            <td style="color:var(--text-muted); font-size:12px">Headlines e descrições</td>
+          </tr>
+          <tr>
+            <td><span class="td-block">Troca de tela</span></td>
+            <td><span class="td-ok">Tela danificada? Resolva hoje</span></td>
+            <td style="color:var(--text-muted); font-size:12px">Anúncios de alta intenção</td>
+          </tr>
+          <tr>
+            <td><span class="td-block">Troca de bateria</span></td>
+            <td><span class="td-ok">Bateria fraca · Desempenho zero</span></td>
+            <td style="color:var(--text-muted); font-size:12px">Headline de dor</td>
+          </tr>
+          <tr>
+            <td><span class="td-block">Técnico especializado</span></td>
+            <td><span class="td-ok">Especialistas em dispositivos móveis</span></td>
+            <td style="color:var(--text-muted); font-size:12px">Prova de autoridade</td>
+          </tr>
+          <tr>
+            <td><span class="td-block">Manutenção / suporte</span></td>
+            <td><span class="td-ok">Cuidado profissional para smartphones</span></td>
+            <td style="color:var(--text-muted); font-size:12px">Seção de serviços</td>
+          </tr>
+          <tr>
+            <td><span class="td-block">Autorizada / centro de reparo</span></td>
+            <td><span class="td-ok">Atendimento especializado com garantia</span></td>
+            <td style="color:var(--text-muted); font-size:12px">Evita conflito com marcas</td>
+          </tr>
+          <tr>
+            <td><span class="td-block">Desbloqueio</span></td>
+            <td><span class="td-ok">Otimização de dispositivo</span></td>
+            <td style="color:var(--text-muted); font-size:12px">Se necessário mencionar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 2 — ANÚNCIOS RESPONSIVOS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">Anúncios Responsivos (RSA)</h2>
+    </div>
+    <p class="section-desc">Monte 3 grupos de anúncios distintos. O Google combina automaticamente — quanto mais variações, melhor o score.</p>
+
+    <!-- GRUPO 1 -->
+    <div class="card" style="margin-bottom:4px; border-color: rgba(99,179,237,0.2);">
+      <div class="card-label" style="color: var(--accent)">Grupo 1 — Foco em Urgência + Tela</div>
+    </div>
+
+    <div class="ad-preview">
+      <div class="ad-number">H1</div>
+      <div class="ad-badge">Anúncio</div>
+      <div class="ad-url">mbcelulares.com.br › smartphones › porto-alegre</div>
+      <div class="ad-headline">Tela Danificada? Resolva Hoje<span class="separator">|</span>Especialistas em Smartphones<span class="separator">|</span>Atendimento com Hora Marcada</div>
+      <div class="ad-desc">Seu celular com problema de tela ou bateria fraca? Avaliação especializada, peça com qualidade e garantia no serviço. Sem surpresa no preço. Porto Alegre e Canoas.</div>
+    </div>
+
+    <div class="card" style="margin-bottom:4px; background: var(--bg-card2); border-style: dashed; border-color: var(--border)">
+      <div class="card-label">Headlines disponíveis — Grupo 1 (use todas as 15)</div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:4px">
+        <span class="kw-tag phrase">Tela Danificada? Resolva Hoje</span>
+        <span class="kw-tag phrase">Especialistas em Smartphones</span>
+        <span class="kw-tag phrase">Atendimento com Hora Marcada</span>
+        <span class="kw-tag phrase">Peça com Qualidade e Garantia</span>
+        <span class="kw-tag phrase">Porto Alegre e Canoas</span>
+        <span class="kw-tag phrase">Orçamento Sem Compromisso</span>
+        <span class="kw-tag phrase">Sem Surpresa no Preço</span>
+        <span class="kw-tag phrase">Dispositivos Móveis Premium</span>
+        <span class="kw-tag phrase">Tele Busca Disponível</span>
+        <span class="kw-tag phrase">Resultado no Mesmo Dia</span>
+        <span class="kw-tag phrase">Seu Celular em Boas Mãos</span>
+        <span class="kw-tag phrase">Atendimento Rápido e Organizado</span>
+        <span class="kw-tag phrase">Problema no iPhone ou Samsung?</span>
+        <span class="kw-tag phrase">Avaliação Especializada</span>
+        <span class="kw-tag phrase">Mais de 5 Anos Atendendo</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px; background: var(--bg-card2); border-style: dashed;">
+      <div class="card-label">Descrições — Grupo 1 (use as 4)</div>
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px">
+        <div style="font-size:13px; color:var(--text-muted); padding:10px 12px; background:var(--bg-card); border-radius:8px; border:1px solid var(--border)">
+          <strong style="color:var(--text); display:block; margin-bottom:4px">Desc 1 — Dor + Medo removido:</strong>
+          Cansado de orçamento sem garantia ou peça de qualidade duvidosa? Aqui você sabe o que vai pagar antes, recebe com garantia real e sem enrolação. Fale agora no WhatsApp.
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); padding:10px 12px; background:var(--bg-card); border-radius:8px; border:1px solid var(--border)">
+          <strong style="color:var(--text); display:block; margin-bottom:4px">Desc 2 — Diferencial operacional:</strong>
+          Atendimento organizado com hora marcada, tele busca disponível e acabamento profissional. Especialistas em smartphones em Porto Alegre e Canoas. Segunda a sexta, 8h às 18h.
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); padding:10px 12px; background:var(--bg-card); border-radius:8px; border:1px solid var(--border)">
+          <strong style="color:var(--text); display:block; margin-bottom:4px">Desc 3 — Prova social:</strong>
+          Centenas de clientes atendidos. Avaliação especializada, transparência no processo e garantia inclusa. Resolva o problema do seu smartphone com quem realmente entende.
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); padding:10px 12px; background:var(--bg-card); border-radius:8px; border:1px solid var(--border)">
+          <strong style="color:var(--text); display:block; margin-bottom:4px">Desc 4 — CTA + segurança:</strong>
+          Sem surpresa no orçamento e sem risco de perder seus dados. Atendimento presencial em Porto Alegre com opção de tele busca. Chame no WhatsApp e agende agora.
+        </div>
+      </div>
+    </div>
+
+    <!-- GRUPO 2 -->
+    <div class="card" style="margin-bottom:4px; border-color: rgba(104,211,145,0.2);">
+      <div class="card-label" style="color: var(--accent-green)">Grupo 2 — Foco em Bateria + Desempenho</div>
+    </div>
+
+    <div class="card" style="margin-bottom:4px; background: var(--bg-card2); border-style: dashed;">
+      <div class="card-label">Headlines — Grupo 2</div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:4px">
+        <span class="kw-tag exact">Bateria Fraca? Desempenho Zero?</span>
+        <span class="kw-tag exact">Seu Celular Não Carrega Mais?</span>
+        <span class="kw-tag exact">Recupere o Desempenho do Seu iPhone</span>
+        <span class="kw-tag exact">Especialistas em Dispositivos Apple</span>
+        <span class="kw-tag exact">Samsung Galaxy com Problema?</span>
+        <span class="kw-tag exact">Atendimento Premium em Porto Alegre</span>
+        <span class="kw-tag exact">Solução para Smartphones Premium</span>
+        <span class="kw-tag exact">Avaliação Especializada Hoje</span>
+        <span class="kw-tag exact">Garantia Real no Serviço</span>
+        <span class="kw-tag exact">Celular Voltando ao Normal</span>
+        <span class="kw-tag exact">Sem Fila · Com Hora Marcada</span>
+        <span class="kw-tag exact">Canoas e Porto Alegre</span>
+        <span class="kw-tag exact">Peça Original com Qualidade</span>
+        <span class="kw-tag exact">Tele Busca Disponível</span>
+        <span class="kw-tag exact">Fale Agora no WhatsApp</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px; background: var(--bg-card2); border-style: dashed;">
+      <div class="card-label">Descrições — Grupo 2</div>
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px">
+        <div style="font-size:13px; color:var(--text-muted); padding:10px 12px; background:var(--bg-card); border-radius:8px; border:1px solid var(--border)">
+          <strong style="color:var(--text); display:block; margin-bottom:4px">Desc 1:</strong>
+          Celular que não carrega ou bateria que não dura até o fim do dia? Avaliação especializada com transparência total. Saiba o que vai pagar antes, sem surpresa. Porto Alegre.
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); padding:10px 12px; background:var(--bg-card); border-radius:8px; border:1px solid var(--border)">
+          <strong style="color:var(--text); display:block; margin-bottom:4px">Desc 2:</strong>
+          Especialistas em iPhone, Samsung e Xiaomi. Atendimento com hora marcada, peça de qualidade e garantia inclusa. Sem fila, sem enrolação. Chame no WhatsApp agora.
+        </div>
+      </div>
+    </div>
+
+    <!-- GRUPO 3 -->
+    <div class="card" style="margin-bottom:4px; border-color: rgba(246,173,85,0.2);">
+      <div class="card-label" style="color: var(--accent-warm)">Grupo 3 — Foco em Confiança + Garantia (remarketing / geral)</div>
+    </div>
+
+    <div class="card" style="margin-bottom:4px; background: var(--bg-card2); border-style: dashed;">
+      <div class="card-label">Headlines — Grupo 3</div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:4px">
+        <span class="kw-tag broad">Smartphone com Problema?</span>
+        <span class="kw-tag broad">Já Foi Mal Atendido Antes?</span>
+        <span class="kw-tag broad">Atendimento Que Você Pode Confiar</span>
+        <span class="kw-tag broad">Transparência do Início ao Fim</span>
+        <span class="kw-tag broad">Garantia de Verdade no Serviço</span>
+        <span class="kw-tag broad">Clientes Indicam Porque Funciona</span>
+        <span class="kw-tag broad">Sem Peça de Qualidade Duvidosa</span>
+        <span class="kw-tag broad">Porto Alegre · Atendimento Ágil</span>
+        <span class="kw-tag broad">Avalie Sem Compromisso</span>
+        <span class="kw-tag broad">Especialistas com Histórico Real</span>
+        <span class="kw-tag broad">Seu Celular é Importante</span>
+        <span class="kw-tag broad">Problema Resolvido com Garantia</span>
+        <span class="kw-tag broad">Tele Busca · Sem Sair de Casa</span>
+        <span class="kw-tag broad">Atendemos iPhone e Android</span>
+        <span class="kw-tag broad">Fale no WhatsApp · Resposta Rápida</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 3 — PALAVRAS-CHAVE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">Palavras-chave</h2>
+    </div>
+    <p class="section-desc">Organize em grupos temáticos. Preferência por correspondência exata e de frase no início.</p>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-green)"></div> Exata [palavra]</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div> Frase "palavra"</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-warm)"></div> Ampla modificada</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-red)"></div> Negativa</div>
+    </div>
+
+    <div class="kw-group">
+      <div class="kw-header">
+        <div class="kw-dot" style="background:var(--accent)"></div>
+        <span class="kw-title">Grupo A — Problema + Localização</span>
+        <span class="kw-subtitle">Alta intenção · Prioridade máxima</span>
+      </div>
+      <div class="kw-body">
+        <span class="kw-tag exact">[tela quebrada porto alegre]</span>
+        <span class="kw-tag exact">[celular sem carregar porto alegre]</span>
+        <span class="kw-tag exact">[bateria iphone porto alegre]</span>
+        <span class="kw-tag exact">[tela iphone porto alegre]</span>
+        <span class="kw-tag exact">[tela samsung porto alegre]</span>
+        <span class="kw-tag exact">[celular com problema canoas]</span>
+        <span class="kw-tag phrase">"tela quebrada porto alegre"</span>
+        <span class="kw-tag phrase">"celular não carrega porto alegre"</span>
+        <span class="kw-tag phrase">"problema no celular porto alegre"</span>
+        <span class="kw-tag phrase">"bateria fraca iphone porto alegre"</span>
+      </div>
+    </div>
+
+    <div class="kw-group">
+      <div class="kw-header">
+        <div class="kw-dot" style="background:var(--accent-green)"></div>
+        <span class="kw-title">Grupo B — Intenção de resolução (sem localização)</span>
+        <span class="kw-subtitle">Média intenção · Segmentar por raio no Google</span>
+      </div>
+      <div class="kw-body">
+        <span class="kw-tag phrase">"tela iphone quebrada"</span>
+        <span class="kw-tag phrase">"trocar tela samsung"</span>
+        <span class="kw-tag phrase">"celular sem carregar o que fazer"</span>
+        <span class="kw-tag phrase">"bateria iphone viciando"</span>
+        <span class="kw-tag phrase">"tela samsung galaxy quebrada"</span>
+        <span class="kw-tag phrase">"quanto custa trocar tela iphone"</span>
+        <span class="kw-tag phrase">"celular caiu na água"</span>
+        <span class="kw-tag phrase">"iphone não liga mais"</span>
+        <span class="kw-tag broad">tela quebrada celular especialista</span>
+        <span class="kw-tag broad">bateria fraca smartphone profissional</span>
+      </div>
+    </div>
+
+    <div class="kw-group">
+      <div class="kw-header">
+        <div class="kw-dot" style="background:var(--accent-warm)"></div>
+        <span class="kw-title">Grupo C — Modelo específico (tickets altos)</span>
+        <span class="kw-subtitle">iPhone premium · Samsung Galaxy Ultra · Xiaomi</span>
+      </div>
+      <div class="kw-body">
+        <span class="kw-tag phrase">"tela iphone 15 porto alegre"</span>
+        <span class="kw-tag phrase">"tela iphone 14 pro"</span>
+        <span class="kw-tag phrase">"samsung s24 tela quebrada"</span>
+        <span class="kw-tag phrase">"iphone 13 bateria ruim"</span>
+        <span class="kw-tag phrase">"galaxy s23 problema tela"</span>
+        <span class="kw-tag phrase">"iphone 15 pro sem carregar"</span>
+        <span class="kw-tag broad">iphone premium problema especialista</span>
+        <span class="kw-tag broad">samsung galaxy ultra tela danificada</span>
+      </div>
+    </div>
+
+    <div class="kw-group">
+      <div class="kw-header">
+        <div class="kw-dot" style="background:var(--accent-red)"></div>
+        <span class="kw-title">Palavras-chave NEGATIVAS — obrigatórias</span>
+        <span class="kw-subtitle">Evitam clique sem intenção de compra</span>
+      </div>
+      <div class="kw-body">
+        <span class="kw-tag negative">grátis</span>
+        <span class="kw-tag negative">de graça</span>
+        <span class="kw-tag negative">barato</span>
+        <span class="kw-tag negative">promoção</span>
+        <span class="kw-tag negative">curso</span>
+        <span class="kw-tag negative">tutorial</span>
+        <span class="kw-tag negative">como fazer</span>
+        <span class="kw-tag negative">como trocar</span>
+        <span class="kw-tag negative">fazer em casa</span>
+        <span class="kw-tag negative">DIY</span>
+        <span class="kw-tag negative">emulador</span>
+        <span class="kw-tag negative">comprar celular</span>
+        <span class="kw-tag negative">celular novo</span>
+        <span class="kw-tag negative">Samsung loja</span>
+        <span class="kw-tag negative">Apple Store</span>
+        <span class="kw-tag negative">autorizada Samsung</span>
+        <span class="kw-tag negative">autorizada Apple</span>
+        <span class="kw-tag negative">Rio de Janeiro</span>
+        <span class="kw-tag negative">São Paulo</span>
+        <span class="kw-tag negative">Curitiba</span>
+        <span class="kw-tag negative">vagas</span>
+        <span class="kw-tag negative">emprego</span>
+        <span class="kw-tag negative">atacado</span>
+        <span class="kw-tag negative">peça avulsa</span>
+        <span class="kw-tag negative">fornecedor</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 4 — EXTENSÕES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">Extensões de Anúncio</h2>
+    </div>
+    <p class="section-desc">Configure todas — aumentam o CTR sem custo adicional.</p>
+
+    <div class="ext-grid">
+      <div class="ext-card">
+        <div class="ext-type">Sitelinks</div>
+        <div class="ext-item">Ver Soluções Disponíveis</div>
+        <div class="ext-item">Como Funciona o Atendimento</div>
+        <div class="ext-item">Falar no WhatsApp Agora</div>
+        <div class="ext-item">Sobre a Garantia</div>
+        <div class="ext-item">Tele Busca · Agendamento</div>
+      </div>
+      <div class="ext-card">
+        <div class="ext-type">Callouts (destaques)</div>
+        <div class="ext-item">Peça com Qualidade</div>
+        <div class="ext-item">Garantia no Serviço</div>
+        <div class="ext-item">Atendimento Ágil</div>
+        <div class="ext-item">Sem Surpresa no Preço</div>
+        <div class="ext-item">Tele Busca Disponível</div>
+        <div class="ext-item">Hora Marcada</div>
+      </div>
+      <div class="ext-card">
+        <div class="ext-type">Snippets Estruturados</div>
+        <div class="ext-item">Dispositivos: iPhone, Samsung, Xiaomi</div>
+        <div class="ext-item">Regiões: Porto Alegre, Canoas</div>
+        <div class="ext-item">Diferenciais: Garantia, Tele Busca</div>
+      </div>
+      <div class="ext-card">
+        <div class="ext-type">Formulário / Chamada</div>
+        <div class="ext-item">Botão direto pro WhatsApp</div>
+        <div class="ext-item">Extensão de chamada (telefone)</div>
+        <div class="ext-item">Extensão de localização (G. Business)</div>
+        <div class="ext-item">Extensão de preço (opcional)</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 5 — AGENDAMENTO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <h2 class="section-title">Agendamento de Anúncios</h2>
+    </div>
+    <p class="section-desc">Ativar 30 minutos antes de abrir — cliente busca antes de sair de casa.</p>
+
+    <div class="schedule-grid">
+      <div class="schedule-day active">
+        <div class="day-name">Seg</div>
+        <div class="day-hours">7h30<br>18h30</div>
+      </div>
+      <div class="schedule-day active">
+        <div class="day-name">Ter</div>
+        <div class="day-hours">7h30<br>18h30</div>
+      </div>
+      <div class="schedule-day active">
+        <div class="day-name">Qua</div>
+        <div class="day-hours">7h30<br>18h30</div>
+      </div>
+      <div class="schedule-day active">
+        <div class="day-name">Qui</div>
+        <div class="day-hours">7h30<br>18h30</div>
+      </div>
+      <div class="schedule-day active">
+        <div class="day-name">Sex</div>
+        <div class="day-hours">7h30<br>18h30</div>
+      </div>
+      <div class="schedule-day active" style="border-color:rgba(246,173,85,0.3); background:rgba(246,173,85,0.05)">
+        <div class="day-name" style="color:var(--accent-warm)">Sáb</div>
+        <div class="day-hours" style="color:var(--accent-warm)">8h30<br>15h30</div>
+      </div>
+      <div class="schedule-day inactive">
+        <div class="day-name">Dom</div>
+        <div class="day-hours">—</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 6 — MÉTRICAS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <h2 class="section-title">Metas de Referência</h2>
+    </div>
+    <p class="section-desc">Ticket médio estimado R$250 · Capacidade de 15–18 atendimentos/semana.</p>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">R$900</div>
+        <div class="metric-label">Investimento inicial sugerido/mês</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">R$2,50</div>
+        <div class="metric-label">CPC médio estimado (local)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">R$30</div>
+        <div class="metric-label">CPL aceitável por lead</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">20–30</div>
+        <div class="metric-label">Contatos esperados/mês</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 7 — NOTA ESTRATÉGICA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <h2 class="section-title">Estratégia Central da Copy</h2>
+    </div>
+
+    <div class="strategy-note">
+      <div class="note-title">💡 O mecanismo único do MB Celulares</div>
+      <div class="note-body">
+        O diferencial real não é o serviço em si — todo mundo faz. É a <strong style="color:#fff">experiência sem risco</strong>: transparência no preço antes de começar, peça com qualidade, garantia real e atendimento organizado com hora marcada. A campanha não vende "troca de tela barata". Ela vende <strong style="color:#fff">"resolve certo, sem medo de ser enganado, no mesmo dia"</strong> — para quem já se frustrou em outro lugar ou tem medo de se frustrar.
+      </div>
+    </div>
+
+    <div class="strategy-note" style="background:rgba(104,211,145,0.05); border-color:rgba(104,211,145,0.2);">
+      <div class="note-title" style="color:var(--accent-green)">✅ Checklist antes de subir a campanha</div>
+      <div class="checklist" style="margin-top:8px">
+        <div class="check-item"><div class="check-icon">✓</div>Landing page revisada — zero palavras bloqueadas</div>
+        <div class="check-item"><div class="check-icon">✓</div>Google Business configurado com horário correto</div>
+        <div class="check-item"><div class="check-icon">✓</div>Conversão de WhatsApp configurada no Google Ads</div>
+        <div class="check-item"><div class="check-icon">✓</div>Extensão de localização ativada</div>
+        <div class="check-item"><div class="check-icon">✓</div>Raio geográfico definido (Porto Alegre + Canoas)</div>
+        <div class="check-item"><div class="check-icon">✓</div>Negativas adicionadas na lista antes de ativar</div>
+        <div class="check-item"><div class="check-icon">✓</div>Anúncios com score "Bom" ou "Excelente" no RSA</div>
+        <div class="check-item"><div class="check-icon">✓</div>Estratégia de lances: Maximizar cliques nos primeiros 14 dias → migrar para CPA desejado</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
